@@ -1,0 +1,4 @@
+name: MinecraftGameOfLife
+author: Assossa
+version: 1.0
+main: xyz.assossa.gol.GameOfLife

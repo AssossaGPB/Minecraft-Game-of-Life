@@ -1,5 +1,7 @@
 package xyz.assossa.gol.ruleset;
 
+import xyz.assossa.gol.util.Board;
+
 public class ConwayLife extends RuleSet {
 
     public ConwayLife() {
@@ -7,14 +9,14 @@ public class ConwayLife extends RuleSet {
     }
 
     @Override
-    public boolean[][] step(boolean[][] board, int width, int height) {
-        boolean board2[][] = new boolean[width][height];
+    public boolean[][] step(Board board) {
+        boolean board2[][] = new boolean[board.getWidth()][board.getHeight()];
 
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                int n = getNeighbors(board, x, y, width, height);
+        for (int x = 0; x < board.getWidth(); x++) {
+            for (int y = 0; y < board.getHeight(); y++) {
+                int n = getNeighbors(board, x, y);
 
-                if (board[x][y])
+                if (board.getBoard()[x][y])
                     board2[x][y] = n >= 2 && n < 4;
                 else
                     board2[x][y] = n == 3;

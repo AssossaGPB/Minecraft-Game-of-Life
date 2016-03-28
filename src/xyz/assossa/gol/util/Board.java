@@ -18,10 +18,6 @@ public class Board {
         board = new boolean[width][height];
     }
 
-    public void setBoard(boolean[][] board) {
-        this.board = board;
-    }
-
     public void generateRandomBoard() {
         generateRandomBoard((int) (System.currentTimeMillis() * 1000));
     }
@@ -35,5 +31,29 @@ public class Board {
                 board[x][y] = r.nextBoolean();
 
         setBoard(board);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public boolean[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(boolean[][] board) {
+        this.board = board;
     }
 }

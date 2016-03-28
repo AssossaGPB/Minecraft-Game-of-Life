@@ -1,5 +1,7 @@
 package xyz.assossa.gol.ruleset;
 
+import xyz.assossa.gol.util.Board;
+
 public abstract class RuleSet {
 
     public String id;
@@ -8,36 +10,36 @@ public abstract class RuleSet {
         this.id = id;
     }
 
-    public abstract boolean[][] step(boolean[][] board, int width, int height);
+    public abstract boolean[][] step(Board board);
 
-    protected int getNeighbors(boolean[][] board, int x, int y, int width, int height) {
+    public int getNeighbors(Board board, int x, int y) {
         int n = 0;
 
-        n += getCell(board, x + 1, y, width, height) ? 1 : 0;
-        n += getCell(board, x, y + 1, width, height) ? 1 : 0;
-        n += getCell(board, x - 1, y, width, height) ? 1 : 0;
-        n += getCell(board, x, y - 1, width, height) ? 1 : 0;
-        n += getCell(board, x - 1, y - 1, width, height) ? 1 : 0;
-        n += getCell(board, x + 1, y + 1, width, height) ? 1 : 0;
-        n += getCell(board, x + 1, y - 1, width, height) ? 1 : 0;
-        n += getCell(board, x - 1, y + 1, width, height) ? 1 : 0;
+        n += getCell(board, x + 1, y) ? 1 : 0;
+        n += getCell(board, x, y + 1) ? 1 : 0;
+        n += getCell(board, x - 1, y) ? 1 : 0;
+        n += getCell(board, x, y - 1) ? 1 : 0;
+        n += getCell(board, x - 1, y - 1) ? 1 : 0;
+        n += getCell(board, x + 1, y + 1) ? 1 : 0;
+        n += getCell(board, x + 1, y - 1) ? 1 : 0;
+        n += getCell(board, x - 1, y + 1) ? 1 : 0;
 
         return n;
     }
 
-    protected boolean getCell(boolean[][] board, int x, int y, int width, int height) {
+    public boolean getCell(Board board, int x, int y) {
         if (x < 0)
-            x = (x % (-1 * width)) + width;
+            x = (x % (-1 * board.getWidth())) + board.getWidth();
 
         if (y < 0)
-            y = (y % (-1 * height)) + height;
+            y = (y % (-1 * board.getHeight())) + board.getHeight();
 
-        if (x >= width)
-            x = (x % (width - 1)) - 1;
+        if (x >= board.getWidth())
+            x = (x % (board.getWidth() - 1)) - 1;
 
-        if (y >= height)
-            y = (y % (height - 1)) - 1;
+        if (y >= board.getHeight())
+            y = (y % (board.getHeight() - 1)) - 1;
 
-        return board[x][y];
+        return board.getBoard()[x][y];
     }
 }
